@@ -1,0 +1,9 @@
+{
+    "files.exclude": {
+        "**/.git": true,
+        "**/.godot": true,
+        "**/.vscode": true,
+
+        "**/*.import": true
+    }
+}
