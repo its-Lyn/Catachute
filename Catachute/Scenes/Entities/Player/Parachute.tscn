@@ -1,3 +1,18 @@
-[gd_scene format=3 uid="uid://cs046p8bo7onr"]
+[gd_scene load_steps=3 format=3 uid="uid://cs046p8bo7onr"]
+
+[ext_resource type="Texture2D" uid="uid://ls65560khlcl" path="res://Assets/Player/Parachute.png" id="1_6gamd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7htd7"]
+size = Vector2(23, 4)
 
 [node name="Parachute" type="Area2D"]
+position = Vector2(537, 361)
+scale = Vector2(5, 5)
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_6gamd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_7htd7")

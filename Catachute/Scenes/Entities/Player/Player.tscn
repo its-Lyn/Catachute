@@ -1,22 +1,26 @@
-[gd_scene load_steps=4 format=3 uid="uid://duy1tiosy5fmp"]
+[gd_scene load_steps=5 format=3 uid="uid://duy1tiosy5fmp"]
 
-[ext_resource type="Texture2D" uid="uid://pjine4owbu54" path="res://Assets/Icons/icon.svg" id="1_cheg1"]
 [ext_resource type="Script" path="res://Scripts/Entities/Player/Player.gd" id="1_ral7t"]
+[ext_resource type="Texture2D" uid="uid://dk18f0edydy6m" path="res://Assets/Player/Player.png" id="2_s8mji"]
+[ext_resource type="PackedScene" uid="uid://cs046p8bo7onr" path="res://Scenes/Entities/Player/Parachute.tscn" id="3_8ibub"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_lhyd7"]
 radius = 34.0147
 
 [node name="Player" type="CharacterBody2D"]
-position = Vector2(553, 217)
+position = Vector2(552, 208)
 script = ExtResource("1_ral7t")
 SPEED = 50
 MAX_ACCELL = 400
 AIR_FRICTION = 30
 metadata/_edit_group_ = true
 
+[node name="Parachute" parent="." instance=ExtResource("3_8ibub")]
+position = Vector2(-5, -60)
+
 [node name="Sprite" type="Sprite2D" parent="."]
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("1_cheg1")
+scale = Vector2(5, 5)
+texture = ExtResource("2_s8mji")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_lhyd7")
