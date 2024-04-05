@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://hfgpbkoba5vg"]
+
+[ext_resource type="Script" path="res://Scripts/Entities/Bean.gd" id="1_la06c"]
+[ext_resource type="Texture2D" uid="uid://gr32qxqq51qq" path="res://Assets/Bean.png" id="1_lwgx1"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4gxvm"]
+radius = 7.44312
+
+[node name="Bean" type="Area2D"]
+position = Vector2(459, 207)
+scale = Vector2(2, 2)
+collision_layer = 16
+script = ExtResource("1_la06c")
+speed_debuff = 2
+metadata/_edit_group_ = true
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_lwgx1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_4gxvm")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

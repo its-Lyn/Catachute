@@ -1,18 +1,29 @@
-[gd_scene load_steps=3 format=3 uid="uid://cs046p8bo7onr"]
+[gd_scene load_steps=4 format=3 uid="uid://cs046p8bo7onr"]
 
 [ext_resource type="Texture2D" uid="uid://ls65560khlcl" path="res://Assets/Player/Parachute.png" id="1_6gamd"]
+[ext_resource type="Script" path="res://Scripts/Entities/Player/Parachute.gd" id="1_st7ef"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7htd7"]
 size = Vector2(23, 4)
 
-[node name="Parachute" type="Area2D"]
+[node name="Parachute" type="Area2D" node_paths=PackedStringArray("sprite")]
 position = Vector2(537, 361)
 scale = Vector2(5, 5)
+script = ExtResource("1_st7ef")
+sprite = NodePath("Sprite")
 metadata/_edit_group_ = true
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="OffsetSwitch" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
+
+[node name="Sprite" type="Sprite2D" parent="."]
+position = Vector2(2.08165e-12, -0.001)
 texture = ExtResource("1_6gamd")
+offset = Vector2(0.415, -11.585)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-0.5, 0)
+position = Vector2(-0.5, -10.365)
 shape = SubResource("RectangleShape2D_7htd7")
+
+[connection signal="timeout" from="OffsetSwitch" to="." method="_on_offset_switch_timeout"]

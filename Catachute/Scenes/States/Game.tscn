@@ -1,0 +1,39 @@
+[gd_scene load_steps=4 format=3 uid="uid://dlykl3qsrd8kn"]
+
+[ext_resource type="Script" path="res://Scripts/States/Game.gd" id="1_2ueok"]
+[ext_resource type="PackedScene" uid="uid://k2xckix8grs7" path="res://Scenes/Managers/BeanManager.tscn" id="1_pbnkn"]
+[ext_resource type="PackedScene" uid="uid://duy1tiosy5fmp" path="res://Scenes/Entities/Player/Player.tscn" id="2_8wpdv"]
+
+[node name="Game" type="Node" node_paths=PackedStringArray("bean_label")]
+script = ExtResource("1_2ueok")
+bean_label = NodePath("UILayer/Control/Beans")
+
+[node name="BeanManager" parent="." node_paths=PackedStringArray("player_scene", "game") instance=ExtResource("1_pbnkn")]
+player_scene = NodePath("../Player")
+game = NodePath("..")
+
+[node name="UILayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="UILayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Metres" type="Label" parent="UILayer/Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Metres: 0"
+
+[node name="Beans" type="Label" parent="UILayer/Control"]
+layout_mode = 0
+offset_top = 17.0
+offset_right = 65.0
+offset_bottom = 40.0
+text = "Beans: 0"
+
+[node name="Player" parent="." instance=ExtResource("2_8wpdv")]
