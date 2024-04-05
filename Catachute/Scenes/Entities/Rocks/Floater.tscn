@@ -1,18 +1,23 @@
-[gd_scene load_steps=3 format=3 uid="uid://dtke1if5orw26"]
+[gd_scene load_steps=4 format=3 uid="uid://bo1wd8e1o73c3"]
 
-[ext_resource type="Texture2D" uid="uid://dgwp1m5ukmu5j" path="res://Assets/Rocks/RockEdge.png" id="1_lo5rn"]
+[ext_resource type="Script" path="res://Scripts/Entities/Rocks/Floater.gd" id="1_4yhjb"]
+[ext_resource type="Texture2D" uid="uid://cdv1tw4lvjdsc" path="res://Assets/Rocks/RockFloater.png" id="1_efw7h"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_wgjxa"]
-size = Vector2(33, 11.6667)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ch0yf"]
+size = Vector2(35, 7)
 
 [node name="Floater" type="Area2D"]
-position = Vector2(1009, 486)
+position = Vector2(568, 311)
 scale = Vector2(8, 8)
+collision_layer = 8
+script = ExtResource("1_4yhjb")
 metadata/_edit_group_ = true
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_lo5rn")
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_efw7h")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0.333333, -0.166667)
-shape = SubResource("RectangleShape2D_wgjxa")
+position = Vector2(-0.5, 0.5)
+shape = SubResource("RectangleShape2D_ch0yf")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

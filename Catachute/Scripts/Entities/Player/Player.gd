@@ -1,5 +1,9 @@
 extends CharacterBody2D
 
+
+signal metre_travelled(metres: int)
+
+
 @export var SPEED: int
 @export var MAX_ACCELL: int
 @export var AIR_FRICTION: int
@@ -7,6 +11,8 @@ extends CharacterBody2D
 @onready var sprite = $Sprite
 
 var current_beans = 0
+var metres = 0
+
 
 func _ready():
 	sprite.get_node("AnimationPlayer").play("Sway")
@@ -24,3 +30,8 @@ func _physics_process(_delta):
 		velocity.x = move_toward(velocity.x, 0, AIR_FRICTION)
 
 	move_and_slide()
+
+
+func _on_metre_travelled_timeout():
+	metres += 1
+	metre_travelled.emit(metres)

@@ -1,16 +1,20 @@
-[gd_scene load_steps=4 format=3 uid="uid://dlykl3qsrd8kn"]
+[gd_scene load_steps=5 format=3 uid="uid://dlykl3qsrd8kn"]
 
 [ext_resource type="Script" path="res://Scripts/States/Game.gd" id="1_2ueok"]
 [ext_resource type="PackedScene" uid="uid://k2xckix8grs7" path="res://Scenes/Managers/BeanManager.tscn" id="1_pbnkn"]
 [ext_resource type="PackedScene" uid="uid://duy1tiosy5fmp" path="res://Scenes/Entities/Player/Player.tscn" id="2_8wpdv"]
+[ext_resource type="PackedScene" uid="uid://b8jfofgsn2ys5" path="res://Scenes/Managers/RockManager.tscn" id="3_st5x4"]
 
-[node name="Game" type="Node" node_paths=PackedStringArray("bean_label")]
+[node name="Game" type="Node" node_paths=PackedStringArray("bean_label", "metre_label")]
 script = ExtResource("1_2ueok")
 bean_label = NodePath("UILayer/Control/Beans")
+metre_label = NodePath("UILayer/Control/Metres")
 
 [node name="BeanManager" parent="." node_paths=PackedStringArray("player_scene", "game") instance=ExtResource("1_pbnkn")]
 player_scene = NodePath("../Player")
 game = NodePath("..")
+
+[node name="RockManager" parent="." instance=ExtResource("3_st5x4")]
 
 [node name="UILayer" type="CanvasLayer" parent="."]
 
@@ -27,7 +31,7 @@ metadata/_edit_use_anchors_ = true
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
-text = "Metres: 0"
+text = "Distance: 0m"
 
 [node name="Beans" type="Label" parent="UILayer/Control"]
 layout_mode = 0
@@ -37,3 +41,5 @@ offset_bottom = 40.0
 text = "Beans: 0"
 
 [node name="Player" parent="." instance=ExtResource("2_8wpdv")]
+
+[connection signal="metre_travelled" from="Player" to="." method="_on_player_metre_travelled"]

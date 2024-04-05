@@ -71,12 +71,15 @@ radius = 34.0147
 
 [node name="Player" type="CharacterBody2D"]
 position = Vector2(552, 208)
-collision_mask = 16
+collision_mask = 28
 script = ExtResource("1_ral7t")
 SPEED = 50
 MAX_ACCELL = 400
 AIR_FRICTION = 30
 metadata/_edit_group_ = true
+
+[node name="MetreTravelled" type="Timer" parent="."]
+autostart = true
 
 [node name="Parachute" parent="." instance=ExtResource("3_8ibub")]
 position = Vector2(-5, -2.645)
@@ -92,3 +95,5 @@ libraries = {
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_lhyd7")
+
+[connection signal="timeout" from="MetreTravelled" to="." method="_on_metre_travelled_timeout"]

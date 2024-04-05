@@ -1,7 +1,7 @@
 extends Area2D
 
 
-signal score_changed(new_score)
+signal score_changed(new_score: int)
 
 
 @export var speed_debuff: int;
