@@ -1,5 +1,6 @@
 extends Area2D
-
+# TODO speed
+# ,,, spread
 
 signal score_changed(new_score: int)
 
@@ -11,18 +12,24 @@ var speed: float
 
 const OFFSET = 60
 
+const MIN_ROT: float = 5.0
+const MAX_ROT: float = 15.0
+
+const MIN_SPEED: float = 5.0
+const MAX_SPEED: float = 8.0
+
 # Handled by the BeanManager
 var player: Node2D
 
 
 func _ready():
-	rot = randf_range(5.0, 15.0)
+	var rand: float = randf_range(0, 1)
+	
+	rot = (MAX_ROT - MIN_ROT) * rand + MIN_ROT
+	speed = (MAX_SPEED - MIN_SPEED) * rand + MIN_SPEED
 
 	var size: float = randf_range(1.0, 1.5)
 	$Sprite.scale = Vector2(size, size)
-
-	# Calculate speed based on rotation
-	speed = rot - speed_debuff
 
 
 func _physics_process(_delta):
@@ -37,5 +44,5 @@ func _on_body_entered(body):
 	if body == player:
 		player.current_beans += 1
 		score_changed.emit(player.current_beans)
-		
+
 		queue_free()

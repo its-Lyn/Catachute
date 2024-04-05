@@ -3,6 +3,9 @@ extends Node
 
 @onready var bean_scene: PackedScene = preload("res://Scenes/Entities/Bean.tscn")
 @onready var game_size: Vector2 = get_viewport().get_visible_rect().size
+@onready var spawner: Timer = $Spawner
+
+var base_wait: float = 3
 
 @export var player_scene: Node2D
 @export var game: Node
@@ -22,3 +25,4 @@ func _on_spawner_timeout():
 	)
 
 	add_child(bean)
+	spawner.wait_time = base_wait + randf_range(0.2, 1.5)
